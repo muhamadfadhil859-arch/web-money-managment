@@ -1,0 +1,404 @@
+/* ==================== RESET & BASE ==================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+:root {
+  --shadow-soft: 0 18px 35px rgba(0, 0, 0, 0.30);
+  --shadow-hover: 0 25px 45px rgba(0, 0, 0, 0.40);
+  
+  /* Warna Default (Dark) */
+  --bg-color: #2E2E2E;
+  --text-color: #ffffff;
+  --surface-bg: rgba(85, 85, 85, 0.5);
+  --item-bg: #373737;
+  --input-placeholder: #606060;
+  --border-color: rgba(255, 255, 255, 0.08);
+}
+
+/* ==================== LIGHT THEME COLORS ==================== */  
+
+
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background: #2E2E2E;
+  color: white;
+}
+
+
+body.light-theme {
+  background: #F5F5F5;
+  color: #1A1A1A;
+}
+
+body.light-theme .sidebar {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+body.light-theme .sidebar svg,
+body.light-theme .garis-1,
+body.light-theme .garis-2 {
+  color: #1A1A1A;
+  background: #1A1A1A;
+}
+
+body.light-theme .sidebar svg {
+  background: none;
+}
+
+body.light-theme .content {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+body.light-theme .kolom,
+body.light-theme .top p,
+body.light-theme .tabel1 p,
+body.light-theme .tabel2 p, 
+body.light-theme .tabel3 p{
+  background: #E0E0E0;
+  color: #1A1A1A;
+}
+
+/* ==================== INPUT RESET ==================== */
+input {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: none;
+  outline: none;
+  color: white;
+}
+
+input[type="number"] {
+  appearance: textfield;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  appearance: none;
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+/* ==================== LAYOUT ==================== */
+.app {
+  height: 100vh;
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 30px;
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 30px;
+}
+
+main {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+/* ==================== SIDEBAR ==================== */
+.sidebar {
+  background: rgba(85, 85, 85, 0.5);
+  border-radius: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  justify-content: center;
+  padding: 25px 0;
+  height: 100%;
+}
+
+.sidebar .icon {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+}
+
+.icon-top,
+.icon-buttom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+}
+
+.icon-mid {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 40px;
+}
+
+.sidebar svg {
+  width: 35px !important;
+  height: 35px !important;
+  color: white;
+  cursor: pointer;
+  stroke-width: 0.5;
+  transition: transform 0.3s ease;
+}
+
+.sidebar svg:hover {
+  transform: scale(1.1);
+}
+
+.garis-1, 
+.garis-2 {
+  width: 40px;
+  height: 1px;
+  background: white;
+  stroke-width: 0.5;
+}
+
+#buttontheme {
+  position: relative;
+  width: 35px;
+  height: 35px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.press {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+
+  color: white;
+  background: #373737;
+  padding: 8px;
+  font-size: 14px;
+  border-radius: 50px;
+  width: 120px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.press:hover,.confirm:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.35);
+}
+
+/* 🔥 Click Effect (Saat ditekan) */
+.press:active, .confirm:active {
+  transform: scale(0.95);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.25);
+}
+
+/* 🔥 Selected State */
+.press.active, .confirm.active {
+  background: linear-gradient(135deg, #00C9A7, #007CF0);
+  color: white;
+  box-shadow: 0 8px 20px rgba(0, 124, 240, 0.5);
+}
+
+/* ==================== LIGHT MODE SUPPORT ==================== */
+body.light-theme .press, body.light-theme .confirm {
+  background: #E0E0E0;
+  color: #1A1A1A;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+body.light-theme .press:hover, body.light-theme .confirm:hover {
+  box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+}
+
+body.light-theme .press.active, body.light-theme .confirm.active {
+  background: linear-gradient(135deg, #007CF0, #00C9A7);
+  color: white;
+}
+
+
+.icon-moon,
+.icon-sun {
+  width: 35px;
+  height: 35px;
+  stroke-width: 0.5;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: absolute;
+}
+
+.icon-moon {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+  pointer-events: auto;
+}
+
+.icon-sun {
+  opacity: 0;
+  transform: rotate(-180deg) scale(0);
+  pointer-events: none;
+}
+
+body.light-theme .icon-moon {
+  opacity: 0;
+  transform: rotate(180deg) scale(0);
+  pointer-events: none;
+}
+
+body.light-theme .icon-sun {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+  pointer-events: auto;
+}
+/* ==================== CONTENT ==================== */
+.content {
+  height: 100%;
+  width: fit-content;
+  background: rgba(85, 85, 85, 0.5);
+  border-radius: 100px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* ==================== SURFACE EFFECT ==================== */
+.surface {
+  box-shadow: var(--shadow-soft);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.surface:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-4px);
+}
+
+/* ==================== ANIMASI SECTION ==================== */
+.animasi {
+  display: flex;
+  flex-direction: column;
+}
+
+.animasi h3 {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.animasi > p {
+  text-align: left;
+  margin-top: 20px;
+}
+
+/* ==================== TABLES ==================== */
+.top,
+.tabel1,
+.tabel2,
+.tabel3 {
+  display: flex;
+  gap: 40px;
+  margin-top: 10px;
+}
+
+.top p, 
+.tabel1 p, 
+.tabel2 p, 
+.tabel3 p {
+  background: #373737;
+}
+
+.tabel3 {
+  margin-bottom: 20px;
+}
+
+/* ==================== TYPOGRAPHY ==================== */
+p {
+  padding: 8px;
+  font-size: 14px;
+  border-radius: 50px;
+  width: 120px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.kolom {
+  background: #373737;
+  border-radius: 50px;
+  padding: 8px 16px;
+  font-size: 14px;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+}
+
+.confirm {
+  margin-top: 40px;
+  width: fit-content;
+  align-self: center;
+  text-align: center;
+  color: white;
+  border: none;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animasi > * {
+  opacity: 0;
+  animation: fadeUp 0.6s ease forwards;
+  will-change: opacity, transform;
+}
+
+.animasi > *:nth-child(1)  { animation-delay: 0.05s; }
+.animasi > *:nth-child(2)  { animation-delay: 0.1s; }
+.animasi > *:nth-child(3)  { animation-delay: 0.15s; }
+.animasi > *:nth-child(4)  { animation-delay: 0.2s; }
+.animasi > *:nth-child(5)  { animation-delay: 0.25s; }
+.animasi > *:nth-child(6)  { animation-delay: 0.3s; }
+.animasi > *:nth-child(7)  { animation-delay: 0.35s; }
+.animasi > *:nth-child(8)  { animation-delay: 0.4s; }
+.animasi > *:nth-child(9)  { animation-delay: 0.45s; }
+.animasi > *:nth-child(10) { animation-delay: 0.5s; }
+.animasi > *:nth-child(11) { animation-delay: 0.55s; }
+
+
+/* ==================== INPUT FOCUS EFFECT ==================== */
+.kolom {
+  transition: 
+    box-shadow 0.3s ease,
+    transform 0.2s ease;
+}
+
+.input:focus {
+  box-shadow: 0 0 0 2px rgba(0, 201, 167, 0.6);
+  transform: scale(1.02);
+}
+
+/* ==================== CONFIRM BUTTON EFFECT ==================== */
+.confirm {
+  transition: 
+    transform 0.15s ease,
+    box-shadow 0.2s ease;
+  cursor: pointer;
+}

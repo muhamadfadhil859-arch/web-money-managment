@@ -1,0 +1,602 @@
+/* ================= ROOT & RESET ================= */
+:root {
+  --shadow-soft: 0 18px 35px rgba(0, 0, 0, 0.30);
+  --shadow-hover: 0 25px 45px rgba(0, 0, 0, 0.40);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background: #2E2E2E;
+  color: white;
+}
+
+/* ================= SURFACE ================= */
+.surface {
+  box-shadow: var(--shadow-soft);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.surface:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-4px);
+}
+
+/* ================= APP LAYOUT ================= */
+.app {
+  height: 100vh;
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 30px;
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 30px;
+}
+
+/* ================= SIDEBAR ================= */
+.sidebar {
+  background: rgba(85, 85, 85, 0.5);
+  border-radius: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  justify-content: center;
+  padding: 25px 0;
+  height: 100%;
+}
+
+.sidebar .icon {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+}
+
+.sidebar button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.icon-top,
+.icon-buttom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+}
+
+.icon-mid {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 40px;
+}
+
+.sidebar svg {
+  width: 35px !important;
+  height: 35px !important;
+  color: white;
+  cursor: pointer;
+  stroke-width: 0.5;
+  transition: transform 0.3s ease;
+}
+
+.sidebar svg:hover {
+  transform: scale(1.1);
+}
+
+.garis-1, 
+.garis-2 {
+  width: 40px;
+  height: 1px;
+  background: white;
+  stroke-width: 0.5;
+}
+
+/* ================= THEME BUTTON ================= */
+#buttontheme {
+  position: relative;
+  width: 35px;
+  height: 35px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-moon,
+.icon-sun {
+  width: 35px;
+  height: 35px;
+  stroke-width: 0.5;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: absolute;
+}
+
+.icon-moon {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+  pointer-events: auto;
+}
+
+.icon-sun {
+  opacity: 0;
+  transform: rotate(-180deg) scale(0);
+  pointer-events: none;
+}
+
+body.light-theme .icon-moon {
+  opacity: 0;
+  transform: rotate(180deg) scale(0);
+  pointer-events: none;
+}
+
+body.light-theme .icon-sun {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+  pointer-events: auto;
+}
+
+/* ================= MAIN ================= */
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  height: 100%;
+  min-height: 0;
+}
+
+/* ================= SPENDING CARD ================= */
+.spending-card {
+  background: rgba(85, 85, 85, 0.5);
+  border-radius: 20px;
+  padding: 30px;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.header {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+  margin-bottom: 30px;
+}
+
+.header:has(.month-dropdown.active) {
+  z-index: 101;
+}
+
+.title-section {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.title-section svg {
+  width: 40px;
+  height: 40px;
+  color: white;
+  stroke-width: 0.5;
+  flex-shrink: 0;
+}
+
+.title-content {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.title-content h2 {
+  color: white;
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.total-amount {
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.65);
+  margin: 0;
+  line-height: 1;
+}
+
+/* ================= MONTH DROPDOWN ================= */
+.month-dropdown {
+  position: relative;
+}
+
+.month-selector {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: #B4B4B4;
+  user-select: none;
+}
+
+.selected-month {
+  color: inherit;
+}
+
+.arrow-icon {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.3s ease;
+}
+
+.month-dropdown.active .arrow-icon {
+  transform: rotate(180deg);
+}
+
+.month-list {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: rgba(55, 55, 55, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 8px;
+  list-style: none;
+  min-width: 140px;
+  max-height: 300px;
+  overflow-y: auto;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  z-index: 100;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.month-list::-webkit-scrollbar {
+  display: none;
+}
+
+.month-list {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.month-dropdown.active .month-list {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.month-list li {
+  padding: 10px 16px;
+  font-size: 14px;
+  color: #B4B4B4;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+}
+
+.month-list li:hover {
+  background: rgba(127, 109, 228, 0.2);
+  color: white;
+}
+
+.month-list li.active {
+  background: rgba(127, 109, 228, 0.3);
+  color: white;
+  font-weight: 500;
+}
+
+/* ================= SPENDING GRID ================= */
+.spending-grid {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 5px;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+.spending-grid::-webkit-scrollbar {
+  width: 6px;
+}
+
+.spending-grid::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.spending-grid::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 20px;
+  transition: background 0.2s ease;
+}
+
+.spending-grid::-webkit-scrollbar-thumb:hover {
+  background: #7F6DE4;
+}
+
+.grid-row {
+  display: grid;
+  grid-template-columns: 1.5fr 2fr 1fr 1.2fr 0.8fr;
+  gap: 20px;
+  padding: 15px 20px;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: background-color 0.2s ease;
+}
+
+.grid-row:hover {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+.header-row {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.type-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #e0e0e0;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.dot.pink {
+  background-color: #e91e63;
+}
+
+.dot.blue {
+  background-color: #2196F3;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.bold {
+  color: white;
+  font-weight: bold;
+}
+
+/* ================= DELETE BUTTON ================= */
+.delete-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.delete-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  opacity: 0.6;
+}
+
+.delete-btn svg {
+  width: 20px;
+  height: 20px;
+  color: #FF6B6B;
+  stroke-width: 1.5;
+  transition: all 0.3s ease;
+}
+
+.delete-btn:hover {
+  background: rgba(255, 107, 107, 0.1);
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.delete-btn:hover svg {
+  color: #FF4757;
+  stroke-width: 2;
+}
+
+.delete-btn:active {
+  transform: scale(0.95);
+}
+
+/* ================= ANIMATIONS ================= */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.spending-card > * {
+  opacity: 0;
+  animation: fadeUp 0.6s ease forwards;
+  will-change: opacity, transform;
+}
+
+.spending-card > *:nth-child(1) {
+  animation-delay: 0.05s;
+}
+
+.spending-card > *:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.spending-card .grid-row {
+  opacity: 0;
+  animation: fadeUp 0.5s ease forwards;
+  will-change: opacity, transform;
+}
+
+.spending-card .grid-row:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.spending-card .grid-row:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.spending-card .grid-row:nth-child(4) {
+  animation-delay: 0.3s;
+}
+
+.spending-card .grid-row:nth-child(5) {
+  animation-delay: 0.4s;
+}
+
+.spending-card .grid-row:nth-child(6) {
+  animation-delay: 0.5s;
+}
+
+.spending-card .grid-row:nth-child(7) {
+  animation-delay: 0.6s;
+}
+
+/* ================= LIGHT THEME ================= */
+body.light-theme {
+  background: #F5F5F5;
+  color: #1A1A1A;
+}
+
+body.light-theme .sidebar {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+body.light-theme .sidebar svg,
+body.light-theme .garis-1,
+body.light-theme .garis-2 {
+  color: #1A1A1A;
+  background: #1A1A1A;
+}
+
+body.light-theme .sidebar svg {
+  background: none;
+}
+
+body.light-theme .spending-card {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+body.light-theme .title-content h2,
+body.light-theme .title-section svg {
+  color: #1A1A1A;
+}
+
+body.light-theme .total-amount {
+  color: rgba(0, 0, 0, 0.55);
+}
+
+body.light-theme .grid-row {
+  color: #1A1A1A;
+}
+
+body.light-theme .type-cell {
+  color: #666666;
+}
+
+body.light-theme .bold {
+  color: #1A1A1A;
+}
+
+body.light-theme .month-selector {
+  color: #666666;
+}
+
+body.light-theme .month-list {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+body.light-theme .month-list li {
+  color: #666666;
+}
+
+body.light-theme .month-list li:hover {
+  background: rgba(127, 109, 228, 0.1);
+  color: #1A1A1A;
+}
+
+body.light-theme .month-list li.active {
+  background: rgba(127, 109, 228, 0.2);
+  color: #1A1A1A;
+}
+
+body.light-theme .grid-row:not(.header-row) {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+body.light-theme .delete-btn svg {
+  color: #E74C3C;
+}
+
+body.light-theme .delete-btn:hover {
+  background: rgba(231, 76, 60, 0.1);
+}
+
+body.light-theme .delete-btn:hover svg {
+  color: #C0392B;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+  .spending-grid .grid-row {
+    grid-template-columns: 1fr 1.5fr 0.8fr 1fr 0.6fr;
+    gap: 10px;
+    font-size: 12px;
+  }
+  
+  .delete-btn svg {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .title-content h2 {
+    font-size: 16px;
+  }
+  
+  .total-amount {
+    font-size: 12px;
+  }
+}
