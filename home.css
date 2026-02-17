@@ -27,6 +27,9 @@ body {
   box-shadow: var(--shadow-soft);
 }
 
+canvas{
+  margin-top: 15px;
+}
 /* ================= APP LAYOUT ================= */
 .app {
   height: 100vh;
